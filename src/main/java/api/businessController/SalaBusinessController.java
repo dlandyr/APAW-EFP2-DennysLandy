@@ -6,8 +6,8 @@ import api.entities.Sala;
 
 public class SalaBusinessController {
 
-    public String create(SalaDto salaDto) {
-        Sala sala = new Sala(salaDto.getId(),salaDto.getDescripcion(),0);
+    public String crear(SalaDto salaDto) {
+        Sala sala = new Sala(salaDto.getId(),salaDto.getDescripcion(),salaDto.getNumeroAsientos());
         DaoFactory.getFactory().getSalaDao().save(sala);
         return sala.getId();
     }
