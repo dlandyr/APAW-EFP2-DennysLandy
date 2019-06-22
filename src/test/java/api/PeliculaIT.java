@@ -39,13 +39,6 @@ public class PeliculaIT {
     }
 
     @Test
-    void testCrearPeliculaSinPeliculaDto() {
-        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).body(null).post();
-        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
-        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
-    }
-
-    @Test
     void testCrearPeliculasSinArgumentos() {
         HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).body(null).post();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));

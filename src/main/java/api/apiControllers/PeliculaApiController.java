@@ -9,12 +9,12 @@ public class PeliculaApiController {
     public static final String PELICULAS = "/peliculas";
     private PeliculaBusinessController peliculaBusinessController = new PeliculaBusinessController();
 
-    public String create(PeliculaDto peliculaDto) {
+    public String crear(PeliculaDto peliculaDto) {
         this.validate(peliculaDto, "peliculaDto");
         this.validate(peliculaDto.getTitulo(), "peliculaDto Titulo");
         this.validate(peliculaDto.getAnio(), "peliculaDto Anio");
         this.validate(peliculaDto.getGenero(), "peliculaDto Genero");
-        return this.peliculaBusinessController.create(peliculaDto);
+        return this.peliculaBusinessController.crear(peliculaDto);
     }
 
     private void validate(Object property, String message) {

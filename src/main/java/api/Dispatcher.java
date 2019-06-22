@@ -38,7 +38,7 @@ public class Dispatcher {
         if (request.isEqualsPath(SalaApiController.SALAS)) {
             response.setBody(this.salaApiController.crear((SalaDto) request.getBody()));
         } else if (request.isEqualsPath(PeliculaApiController.PELICULAS)) {
-            response.setBody(this.peliculaApiController.create((PeliculaDto) request.getBody()));
+            response.setBody(this.peliculaApiController.crear((PeliculaDto) request.getBody()));
         } else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }
