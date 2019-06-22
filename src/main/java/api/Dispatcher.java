@@ -1,7 +1,9 @@
 package api;
 
 import api.apiControllers.SalaApiController;
+import api.apiControllers.PeliculaApiController;
 import api.dtos.SalaDto;
+import api.dtos.PeliculaDto;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.RequestInvalidException;
 import http.HttpRequest;
@@ -11,6 +13,7 @@ import http.HttpStatus;
 public class Dispatcher {
 
     private SalaApiController salaApiController = new SalaApiController();
+    private PeliculaApiController peliculaApiController = new PeliculaApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
@@ -34,6 +37,8 @@ public class Dispatcher {
     private void doPost(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(SalaApiController.SALAS)) {
             response.setBody(this.salaApiController.crear((SalaDto) request.getBody()));
+        } else if (request.isEqualsPath(PeliculaApiController.PELICULAS)) {
+            response.setBody(this.peliculaApiController.create((PeliculaDto) request.getBody()));
         } else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }
