@@ -10,7 +10,6 @@ public class SalaDaoMemory extends GenericDaoMemory<Sala> implements SalaDao {
         super(new HashMap<>());
     }
 
-
     @Override
     public String getId(Sala sala) {
         return sala.getId();
