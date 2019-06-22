@@ -27,8 +27,28 @@ public class PeliculaIT {
     }
 
     private String crear() {
-        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).body(new PeliculaDto("1000","Avatar","Pelicula animacion 3D",2017, Genero.AVENTURA)).post();
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).body(new PeliculaDto("1000","Avatar","Pelicula animacion 3D",2016, Genero.AVENTURA)).post();
         return (String) new Client().submit(request).getBody();
     }
 
+    @Test
+    void testPeliculaInvalidRequest() {
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS + "/invalid").body(null).post();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+
+    @Test
+    void testCrearPeliculaSinPeliculaDto() {
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).body(null).post();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+
+    @Test
+    void testCrearPeliculasSinArgumentos() {
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).body(null).post();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
 }
