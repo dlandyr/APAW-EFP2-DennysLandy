@@ -14,4 +14,5 @@ public abstract class DaoFactory {
     }
 
     public abstract SalaDao getSalaDao();
+    public abstract PeliculaDao getPeliculaDao();
 }

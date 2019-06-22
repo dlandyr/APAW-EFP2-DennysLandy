@@ -10,6 +10,5 @@ notifications:
     recipients:
     - dennys.landy@hotmail.com
 script:
-- mvn verify
 - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify
-- mvn sonar:sonar -Dsonar.organization=b2lero-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$APAW
+- mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=dlandyr-github -Dsonar.login=$APAW
