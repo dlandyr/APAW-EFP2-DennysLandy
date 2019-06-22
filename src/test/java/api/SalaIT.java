@@ -31,4 +31,25 @@ public class SalaIT {
         return (String) new Client().submit(request).getBody();
     }
 
+    @Test
+    void testSalaInvalidRequest() {
+        HttpRequest request = HttpRequest.builder(SalaApiController.SALAS + "/invalid").body(null).post();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+
+    @Test
+    void testCrearSalaSinSalaDto() {
+        HttpRequest request = HttpRequest.builder(SalaApiController.SALAS).body(null).post();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+
+    @Test
+    void testCrearSalaSinSalaDtoDescripcion() {
+        HttpRequest request = HttpRequest.builder(SalaApiController.SALAS).body(new SalaDto(null,null)).post();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+
 }
