@@ -29,5 +29,4 @@ public class PeliculaApiController {
     public List<PeliculaListaDto> leerTodos(){
         return peliculaBusinessController.leer();
     }
-
 }
