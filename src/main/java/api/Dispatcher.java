@@ -63,7 +63,5 @@ public class Dispatcher {
         } else {
             throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
         }
-
     }
-
 }
