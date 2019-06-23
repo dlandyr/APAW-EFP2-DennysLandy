@@ -2,11 +2,15 @@ package api.apiControllers;
 
 import api.businessController.ProyeccionBusinessController;
 import api.dtos.ProyeccionDto;
+import api.entities.Sala;
 import api.exceptions.ArgumentNotValidException;
+
+import java.util.List;
 
 public class ProyeccionApiController {
 
     public static final String PROYECCIONES = "/proyecciones";
+    public static final String SALAS = "/salas";
 
     private ProyeccionBusinessController proyeccionBusinessController = new ProyeccionBusinessController();
 
@@ -22,5 +26,10 @@ public class ProyeccionApiController {
         if (property == null) {
             throw new ArgumentNotValidException(message + " is NULL");
         }
+    }
+
+    public void modificarSala(String proyeccionId, List<Sala> sala) {
+        this.validate(sala, "sala");
+        this.proyeccionBusinessController.modificarSala(proyeccionId, sala);
     }
 }
