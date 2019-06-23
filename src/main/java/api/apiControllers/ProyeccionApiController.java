@@ -6,7 +6,7 @@ import api.exceptions.ArgumentNotValidException;
 
 public class ProyeccionApiController {
 
-    public static final String PROYECCION = "/proyecciones";
+    public static final String PROYECCIONES = "/proyecciones";
 
     private ProyeccionBusinessController proyeccionBusinessController = new ProyeccionBusinessController();
 
