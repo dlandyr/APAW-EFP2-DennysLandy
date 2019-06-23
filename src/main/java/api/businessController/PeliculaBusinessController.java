@@ -28,4 +28,14 @@ public class PeliculaBusinessController {
     public void eliminar(String id){
         DaoFactory.getFactory().getPeliculaDao().deleteById(id);
     }
+
+    public List<PeliculaListaDto> buscarPorAnio(int anio){
+        List<Pelicula> peliculaList = DaoFactory.getFactory().getPeliculaDao().findAll();
+        List<PeliculaListaDto>  peliculaListaDtos = new ArrayList<>();
+        for (Pelicula pelicula : peliculaList){
+            if (pelicula.getAnio()>=anio)
+                peliculaListaDtos.add(new PeliculaListaDto(pelicula));
+        }
+        return peliculaListaDtos;
+    }
 }
