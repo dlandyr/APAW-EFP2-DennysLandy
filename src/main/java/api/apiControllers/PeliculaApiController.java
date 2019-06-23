@@ -2,7 +2,10 @@ package api.apiControllers;
 
 import api.businessController.PeliculaBusinessController;
 import api.dtos.PeliculaDto;
+import api.dtos.PeliculaListaDto;
 import api.exceptions.ArgumentNotValidException;
+
+import java.util.List;
 
 public class PeliculaApiController {
 
@@ -22,4 +25,9 @@ public class PeliculaApiController {
             throw new ArgumentNotValidException(message + " is NULL");
         }
     }
+
+    public List<PeliculaListaDto> leerTodos(){
+        return peliculaBusinessController.leer();
+    }
+
 }
