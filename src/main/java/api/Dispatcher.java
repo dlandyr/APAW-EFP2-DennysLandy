@@ -6,7 +6,9 @@ import api.apiControllers.ProyeccionApiController;
 import api.dtos.ProyeccionDto;
 import api.dtos.SalaDto;
 import api.dtos.PeliculaDto;
+import api.entities.Sala;
 import api.exceptions.ArgumentNotValidException;
+import api.exceptions.NotFoundException;
 import api.exceptions.RequestInvalidException;
 import http.HttpRequest;
 import http.HttpResponse;
@@ -25,12 +27,18 @@ public class Dispatcher {
                 case POST:
                     this.doPost(request, response);
                     break;
+                case PUT:
+                    this.doPut(request, response);
+                    break;
                 default:
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }        } catch (ArgumentNotValidException | RequestInvalidException exception) {
             response.setBody(String.format(ERROR_MESSAGE, exception.getMessage()));
             response.setStatus(HttpStatus.BAD_REQUEST);
-        } catch (Exception exception) {
+        }catch (NotFoundException exception) {
+            response.setBody(String.format(ERROR_MESSAGE, exception.getMessage()));
+            response.setStatus(HttpStatus.NOT_FOUND);
+        }catch (Exception exception) {
             exception.printStackTrace();
             response.setBody(String.format(ERROR_MESSAGE, exception));
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -47,6 +55,15 @@ public class Dispatcher {
         } else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }
+    }
+
+    private void doPut(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(SalaApiController.SALAS + SalaApiController.ID_ID)) {
+            this.salaApiController.modificar(request.getPath(1), (SalaDto) request.getBody());
+        } else {
+            throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+        }
+
     }
 
 }
