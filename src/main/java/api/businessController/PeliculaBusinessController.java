@@ -25,4 +25,8 @@ public class PeliculaBusinessController {
         }
         return peliculaListaDtos;
     }
+
+    public void eliminar(String id){
+        DaoFactory.getFactory().getPeliculaDao().deleteById(id);
+    }
 }
