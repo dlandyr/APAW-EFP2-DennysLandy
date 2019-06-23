@@ -30,6 +30,9 @@ public class Dispatcher {
                 case PUT:
                     this.doPut(request, response);
                     break;
+                case GET:
+                    this.doGet(request, response);
+                    break;
                 default:
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }        } catch (ArgumentNotValidException | RequestInvalidException exception) {
@@ -62,6 +65,15 @@ public class Dispatcher {
             this.salaApiController.modificar(request.getPath(1), (SalaDto) request.getBody());
         } else {
             throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+        }
+    }
+
+    private void doGet(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(PeliculaApiController.PELICULAS)){
+            response.setBody(this.peliculaApiController.leerTodos());
+        } else{
+            throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+
         }
     }
 }
