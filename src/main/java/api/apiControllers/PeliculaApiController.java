@@ -34,4 +34,8 @@ public class PeliculaApiController {
     public void eliminar(String id) {
         this.peliculaBusinessController.eliminar(id);
     }
+
+    public List<PeliculaListaDto> findByName(int anio){
+        return peliculaBusinessController.buscarPorAnio(anio);
+    }
 }
