@@ -1,6 +1,7 @@
 package api.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Proyeccion {
 
@@ -9,6 +10,7 @@ public class Proyeccion {
     private String hora;
     private Sala sala;
     private Pelicula pelicula;
+    private List<Sala> salas;
 
     public Proyeccion(String id, Sala sala, Pelicula pelicula){
         this.id=id;
@@ -61,6 +63,14 @@ public class Proyeccion {
 
     public void setPelicula(Pelicula pelicula) {
         this.pelicula = pelicula;
+    }
+
+    public List<Sala> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(List<Sala> salas) {
+        this.salas = salas;
     }
 
     @Override

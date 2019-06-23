@@ -3,6 +3,10 @@ package api.businessController;
 import api.daos.DaoFactory;
 import api.dtos.ProyeccionDto;
 import api.entities.Proyeccion;
+import api.entities.Sala;
+import api.exceptions.NotFoundException;
+
+import java.util.List;
 
 public class ProyeccionBusinessController {
 
@@ -11,5 +15,12 @@ public class ProyeccionBusinessController {
                 proyeccionDto.getHora(),proyeccionDto.getSala(),proyeccionDto.getPelicula());
         DaoFactory.getFactory().getProyeccionDao().save(proyeccion);
         return proyeccion.getId();
+    }
+
+    public void modificarSala(String proyeccionId, List<Sala> sala){
+        Proyeccion proyeccion = DaoFactory.getFactory().getProyeccionDao().read(proyeccionId)
+                .orElseThrow(()-> new NotFoundException("Proyeccion id: " + proyeccionId));
+        proyeccion.setSalas(sala);
+        DaoFactory.getFactory().getProyeccionDao().save(proyeccion);
     }
 }

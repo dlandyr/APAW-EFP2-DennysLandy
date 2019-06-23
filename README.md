@@ -80,7 +80,7 @@ la organización de los diferentes tipos de test, con integración continua y co
 - 200 OK 
   - `[ {id:String, titulo:String, sinopsis:String,  genero:Genero, anio:Integer} ]`
 ---
-### PATH /salas/{id}/proyecciones
+### PATH /proyecciones/{id}/salas
 #### Parámetros del cuerpo
 - `fecha`: String 
 - `hora`: String 
