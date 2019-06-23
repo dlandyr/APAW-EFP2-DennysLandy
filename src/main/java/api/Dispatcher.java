@@ -32,6 +32,7 @@ public class Dispatcher {
                     break;
                 case GET:
                     this.doGet(request, response);
+                    break;
                 default:
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }        } catch (ArgumentNotValidException | RequestInvalidException exception) {
@@ -69,7 +70,10 @@ public class Dispatcher {
 
     private void doGet(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PeliculaApiController.PELICULAS)){
-            response.setBody(this.peliculaApiController);
+            response.setBody(this.peliculaApiController.leerTodos());
+        } else{
+            throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+
         }
     }
 }

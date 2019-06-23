@@ -4,6 +4,7 @@ import api.apiControllers.PeliculaApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.PeliculaDto;
+import api.dtos.PeliculaListaDto;
 import api.entities.Genero;
 import http.Client;
 import http.HttpException;
@@ -12,8 +13,9 @@ import http.HttpStatus;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PeliculaIT {
 
@@ -43,5 +45,13 @@ public class PeliculaIT {
         HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).body(null).post();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+
+    @Test
+    void testLeerTodo(){
+        this.testCrearPelicula();
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).get();
+        List<PeliculaListaDto> peliculaLista = (List<PeliculaListaDto>) new Client().submit(request).getBody();
+        assertTrue(peliculaLista.size()>=1);
     }
 }
