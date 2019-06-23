@@ -80,6 +80,8 @@ public class Dispatcher {
     private void doGet(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PeliculaApiController.PELICULAS)){
             response.setBody(this.peliculaApiController.leerTodos());
+        }else if (request.isEqualsPath(PeliculaApiController.PELICULAS  + PeliculaApiController.SEARCH)) {
+            response.setBody(this.peliculaApiController.buscarPeliculasMayoresADeterminadoAnio(request.getParams().get("anio")));
         } else{
             throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
 

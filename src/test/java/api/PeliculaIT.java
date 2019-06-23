@@ -62,4 +62,21 @@ public class PeliculaIT {
                 .expandPath(id).delete();
         new Client().submit(request);
     }
+
+    @Test
+    void testBuscarPorAnio(){
+        this.testCrearPelicula();
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).path(PeliculaApiController.SEARCH).param("anio", "2016").get();
+        List<PeliculaListaDto> peliculaListaDtos = (List<PeliculaListaDto>) new Client().submit(request).getBody();
+        assertEquals(1, peliculaListaDtos.size());
+    }
+
+    @Test
+    void testBuscarPorAnioDiferente(){
+        this.testCrearPelicula();
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).path(PeliculaApiController.SEARCH).param("anio","2555").get();
+        List<PeliculaListaDto> peliculaListaDtos = (List<PeliculaListaDto>) new Client().submit(request).getBody();
+        assertTrue(peliculaListaDtos.isEmpty());
+    }
+
 }

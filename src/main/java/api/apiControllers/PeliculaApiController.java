@@ -11,6 +11,7 @@ public class PeliculaApiController {
 
     public static final String PELICULAS = "/peliculas";
     public static final String ID_ID = "/{id}";
+    public static final String SEARCH = "/search";
     private PeliculaBusinessController peliculaBusinessController = new PeliculaBusinessController();
 
     public String crear(PeliculaDto peliculaDto) {
@@ -35,7 +36,7 @@ public class PeliculaApiController {
         this.peliculaBusinessController.eliminar(id);
     }
 
-    public List<PeliculaListaDto> findByName(int anio){
-        return peliculaBusinessController.buscarPorAnio(anio);
+    public List<PeliculaListaDto> buscarPeliculasMayoresADeterminadoAnio(String anio){
+        return peliculaBusinessController.buscarPorAnio(Integer.parseInt(anio));
     }
 }
