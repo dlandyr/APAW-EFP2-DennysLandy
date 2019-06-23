@@ -6,7 +6,6 @@ import api.dtos.PeliculaListaDto;
 import api.entities.Pelicula;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class PeliculaBusinessController {
 
@@ -24,5 +23,9 @@ public class PeliculaBusinessController {
             peliculaListaDtos.add(new PeliculaListaDto(pelicula));
         }
         return peliculaListaDtos;
+    }
+
+    public void eliminar(String id){
+        DaoFactory.getFactory().getPeliculaDao().deleteById(id);
     }
 }

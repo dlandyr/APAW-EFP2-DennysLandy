@@ -39,6 +39,9 @@ public class Dispatcher {
                 case PATCH:
                     this.doPatch(request);
                     break;
+                case DELETE:
+                    this.doDelete(request, response);
+                    break;
                 default:
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }        } catch (ArgumentNotValidException | RequestInvalidException exception) {
@@ -86,6 +89,12 @@ public class Dispatcher {
     private void doPatch(HttpRequest request) {
         if (request.isEqualsPath(ProyeccionApiController.PROYECCIONES + ProyeccionApiController.ID_ID + ProyeccionApiController.SALAS)) {
             this.proyeccionApiController.modificarSala(request.getPath(1), (List<Sala>) request.getBody());
+        }
+    }
+
+    private void doDelete(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(PeliculaApiController.PELICULAS + PeliculaApiController.ID_ID)){
+            this.peliculaApiController.eliminar(request.getPath(1));
         }
     }
 }

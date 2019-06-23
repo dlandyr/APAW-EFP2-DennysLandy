@@ -5,7 +5,6 @@ import api.dtos.ProyeccionDto;
 import api.entities.Proyeccion;
 import api.entities.Sala;
 import api.exceptions.NotFoundException;
-
 import java.util.List;
 
 public class ProyeccionBusinessController {

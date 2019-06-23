@@ -54,4 +54,12 @@ public class PeliculaIT {
         List<PeliculaListaDto> peliculaLista = (List<PeliculaListaDto>) new Client().submit(request).getBody();
         assertTrue(peliculaLista.size()>=1);
     }
+
+    @Test
+    void testEliminar() {
+        String id = this.crear();
+        HttpRequest request = HttpRequest.builder(PeliculaApiController.PELICULAS).path(PeliculaApiController.ID_ID)
+                .expandPath(id).delete();
+        new Client().submit(request);
+    }
 }
