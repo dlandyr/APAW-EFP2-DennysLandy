@@ -62,5 +62,4 @@ public class PeliculaIT {
                 .expandPath(id).delete();
         new Client().submit(request);
     }
-
 }

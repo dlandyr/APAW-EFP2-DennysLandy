@@ -2,7 +2,6 @@ package api.apiControllers;
 
 import api.exceptions.ArgumentNotValidException;
 import api.dtos.SalaDto;
-
 import api.businessController.SalaBusinessController;
 
 public class SalaApiController {

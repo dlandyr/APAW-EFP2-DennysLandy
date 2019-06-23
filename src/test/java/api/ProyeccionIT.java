@@ -56,6 +56,4 @@ public class ProyeccionIT {
     @Test
     void testModificarSalas() {
     }
-
-
 }
