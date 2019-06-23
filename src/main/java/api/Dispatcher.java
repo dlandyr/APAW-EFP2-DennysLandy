@@ -6,6 +6,7 @@ import api.apiControllers.ProyeccionApiController;
 import api.dtos.ProyeccionDto;
 import api.dtos.SalaDto;
 import api.dtos.PeliculaDto;
+import api.entities.Proyeccion;
 import api.entities.Sala;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
@@ -13,6 +14,8 @@ import api.exceptions.RequestInvalidException;
 import http.HttpRequest;
 import http.HttpResponse;
 import http.HttpStatus;
+
+import java.util.List;
 
 public class Dispatcher {
 
@@ -32,6 +35,9 @@ public class Dispatcher {
                     break;
                 case GET:
                     this.doGet(request, response);
+                    break;
+                case PATCH:
+                    this.doPatch(request);
                     break;
                 default:
                     throw new RequestInvalidException("method error: " + request.getMethod());
@@ -74,6 +80,12 @@ public class Dispatcher {
         } else{
             throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
 
+        }
+    }
+
+    private void doPatch(HttpRequest request) {
+        if (request.isEqualsPath(ProyeccionApiController.PROYECCIONES + ProyeccionApiController.ID_ID + ProyeccionApiController.SALAS)) {
+            this.proyeccionApiController.modificarSala(request.getPath(1), (List<Sala>) request.getBody());
         }
     }
 }

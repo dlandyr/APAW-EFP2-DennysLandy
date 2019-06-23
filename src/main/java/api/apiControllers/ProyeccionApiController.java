@@ -10,6 +10,7 @@ import java.util.List;
 public class ProyeccionApiController {
 
     public static final String PROYECCIONES = "/proyecciones";
+    public static final String ID_ID = "/{id}";
     public static final String SALAS = "/salas";
 
     private ProyeccionBusinessController proyeccionBusinessController = new ProyeccionBusinessController();
