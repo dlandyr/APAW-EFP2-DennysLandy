@@ -8,7 +8,6 @@ public class PeliculaDto {
     private String titulo;
     private String sinopsis;
     private int anio;
-
     private Genero genero;
 
     public PeliculaDto(String id, String titulo, int anio, Genero genero){

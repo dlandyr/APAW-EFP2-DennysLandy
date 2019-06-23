@@ -8,6 +8,7 @@ import http.Client;
 import http.HttpException;
 import http.HttpRequest;
 import http.HttpStatus;
+import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -52,4 +53,28 @@ public class SalaIT {
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
     }
 
+    @Test
+    void testModificarSala(){
+        String id = this.crear();
+        LogManager.getLogger().info("sala: "+ id);
+        HttpRequest request = HttpRequest.builder(SalaApiController.SALAS).path(SalaApiController.ID_ID)
+                .expandPath(id).body(new SalaDto("sala10_3D")).put();
+        new Client().submit(request);
+    }
+
+    @Test
+    void testModificarSalaSinSalaDto() {
+        String id = this.crear();
+        HttpRequest request = HttpRequest.builder(SalaApiController.SALAS).path(SalaApiController.ID_ID)
+                .expandPath(id).body(null).put();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+    @Test
+    void testModificarSalaSinDescripcion() {
+        HttpRequest request = HttpRequest.builder(SalaApiController.SALAS).path(SalaApiController.ID_ID)
+                .expandPath("invalid-id").body(new SalaDto(null)).put();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
 }

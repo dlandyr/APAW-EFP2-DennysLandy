@@ -6,6 +6,10 @@ public class SalaDto {
     private String descripcion;
     private int numeroAsientos;
 
+    public SalaDto(String descripcion){
+        this.descripcion=descripcion;
+    }
+
     public SalaDto(String id, String descripcion){
         this.id=id;
         this.descripcion=descripcion;
