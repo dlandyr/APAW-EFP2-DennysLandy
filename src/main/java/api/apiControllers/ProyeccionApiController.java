@@ -2,6 +2,7 @@ package api.apiControllers;
 
 import api.businessController.ProyeccionBusinessController;
 import api.dtos.ProyeccionDto;
+import api.entities.Pelicula;
 import api.entities.Sala;
 import api.exceptions.ArgumentNotValidException;
 
@@ -12,6 +13,7 @@ public class ProyeccionApiController {
     public static final String PROYECCIONES = "/proyecciones";
     public static final String ID_ID = "/{id}";
     public static final String SALAS = "/salas";
+    public static final String PELICULAS = "/peliculas";
 
     private ProyeccionBusinessController proyeccionBusinessController = new ProyeccionBusinessController();
 
@@ -32,5 +34,10 @@ public class ProyeccionApiController {
     public void modificarSala(String proyeccionId, List<Sala> sala) {
         this.validate(sala, "sala");
         this.proyeccionBusinessController.modificarSala(proyeccionId, sala);
+    }
+
+    public void modificarPeliculas(String proyeccionId, List<Pelicula> pelicula) {
+        this.validate(pelicula, "pelicula");
+        this.proyeccionBusinessController.modificarPeliculas(proyeccionId, pelicula);
     }
 }
