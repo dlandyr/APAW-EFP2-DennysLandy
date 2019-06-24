@@ -6,6 +6,7 @@ import api.apiControllers.ProyeccionApiController;
 import api.dtos.ProyeccionDto;
 import api.dtos.SalaDto;
 import api.dtos.PeliculaDto;
+import api.entities.Pelicula;
 import api.entities.Proyeccion;
 import api.entities.Sala;
 import api.exceptions.ArgumentNotValidException;
@@ -64,6 +65,8 @@ public class Dispatcher {
             response.setBody(this.peliculaApiController.crear((PeliculaDto) request.getBody()));
         } else if (request.isEqualsPath(ProyeccionApiController.PROYECCIONES)) {
             response.setBody(this.proyeccionApiController.crear((ProyeccionDto) request.getBody()));
+        } else if (request.isEqualsPath(ProyeccionApiController.PROYECCIONES + ProyeccionApiController.ID_ID + ProyeccionApiController.PELICULAS)) {
+            this.proyeccionApiController.modificarPeliculas(request.getPath(1), (List<Pelicula>) request.getBody());
         } else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }

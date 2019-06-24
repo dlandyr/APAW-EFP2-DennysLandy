@@ -10,7 +10,7 @@ public class PeliculaDto {
     private int anio;
     private Genero genero;
 
-    public PeliculaDto(String id, String titulo, int anio, Genero genero){
+    public PeliculaDto(String id, String titulo){
         this.id=id;
         this.titulo=titulo;
         this.anio=anio;
