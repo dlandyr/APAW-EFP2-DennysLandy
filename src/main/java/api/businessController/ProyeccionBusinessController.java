@@ -2,6 +2,7 @@ package api.businessController;
 
 import api.daos.DaoFactory;
 import api.dtos.ProyeccionDto;
+import api.entities.Pelicula;
 import api.entities.Proyeccion;
 import api.entities.Sala;
 import api.exceptions.NotFoundException;
@@ -20,6 +21,13 @@ public class ProyeccionBusinessController {
         Proyeccion proyeccion = DaoFactory.getFactory().getProyeccionDao().read(proyeccionId)
                 .orElseThrow(()-> new NotFoundException("Proyeccion id: " + proyeccionId));
         proyeccion.setSalas(sala);
+        DaoFactory.getFactory().getProyeccionDao().save(proyeccion);
+    }
+
+    public void modificarPeliculas(String proyeccionId, List<Pelicula> pelicula){
+        Proyeccion proyeccion = DaoFactory.getFactory().getProyeccionDao().read(proyeccionId)
+                .orElseThrow(()-> new NotFoundException("Proyeccion id: " + proyeccionId));
+        proyeccion.setPeliculas(pelicula);
         DaoFactory.getFactory().getProyeccionDao().save(proyeccion);
     }
 }

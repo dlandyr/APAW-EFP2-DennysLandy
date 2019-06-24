@@ -11,6 +11,7 @@ public class Proyeccion {
     private Sala sala;
     private Pelicula pelicula;
     private List<Sala> salas;
+    private List<Pelicula> peliculas;
 
     public Proyeccion(String id, Sala sala, Pelicula pelicula){
         this.id=id;
@@ -73,6 +74,14 @@ public class Proyeccion {
         this.salas = salas;
     }
 
+    public List<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setPeliculas(List<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }
+
     @Override
     public String toString() {
         return "Proyeccion{" +
@@ -81,6 +90,8 @@ public class Proyeccion {
                 ", hora='" + hora + '\'' +
                 ", sala=" + sala +
                 ", pelicula=" + pelicula +
+                ", salas=" + salas +
+                ", peliculas=" + peliculas +
                 '}';
     }
 }
