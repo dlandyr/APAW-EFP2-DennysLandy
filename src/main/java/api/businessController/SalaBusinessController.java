@@ -30,4 +30,10 @@ public class SalaBusinessController {
         }
         return salaaListaDtos;
     }
+
+    public void eliminar(String id){
+        DaoFactory.getFactory().getSalaDao().deleteById(id);
+    }
+
+
 }
