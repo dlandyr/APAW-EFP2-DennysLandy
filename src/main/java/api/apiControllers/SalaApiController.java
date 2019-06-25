@@ -1,8 +1,11 @@
 package api.apiControllers;
 
+import api.dtos.SalaListaDto;
 import api.exceptions.ArgumentNotValidException;
 import api.dtos.SalaDto;
 import api.businessController.SalaBusinessController;
+
+import java.util.List;
 
 public class SalaApiController {
 
@@ -27,5 +30,9 @@ public class SalaApiController {
         if (property == null) {
             throw new ArgumentNotValidException(message + " is NULL");
         }
+    }
+
+    public List<SalaListaDto> leerTodos(){
+        return salaBusinessController.leer();
     }
 }
