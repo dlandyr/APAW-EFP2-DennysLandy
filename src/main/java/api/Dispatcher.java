@@ -102,6 +102,8 @@ public class Dispatcher {
     private void doDelete(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PeliculaApiController.PELICULAS + PeliculaApiController.ID_ID)){
             this.peliculaApiController.eliminar(request.getPath(1));
+        } else if (request.isEqualsPath(SalaApiController.SALAS + SalaApiController.ID_ID)){
+            this.peliculaApiController.eliminar(request.getPath(1));
         }
     }
 }
