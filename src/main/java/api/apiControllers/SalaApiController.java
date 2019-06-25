@@ -35,4 +35,9 @@ public class SalaApiController {
     public List<SalaListaDto> leerTodos(){
         return salaBusinessController.leer();
     }
+
+    public void eliminar(String id) {
+        this.salaBusinessController.eliminar(id);
+    }
+
 }
