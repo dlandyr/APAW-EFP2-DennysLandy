@@ -1,13 +1,17 @@
 package api.apiControllers;
 
+import api.dtos.SalaListaDto;
 import api.exceptions.ArgumentNotValidException;
 import api.dtos.SalaDto;
 import api.businessController.SalaBusinessController;
+
+import java.util.List;
 
 public class SalaApiController {
 
     public static final String SALAS = "/salas";
     public static final String ID_ID = "/{id}";
+    public static final String SEARCH = "/search";
 
     private SalaBusinessController salaBusinessController = new SalaBusinessController();
 
@@ -27,5 +31,9 @@ public class SalaApiController {
         if (property == null) {
             throw new ArgumentNotValidException(message + " is NULL");
         }
+    }
+
+    public List<SalaListaDto> leerTodos(){
+        return salaBusinessController.leer();
     }
 }
