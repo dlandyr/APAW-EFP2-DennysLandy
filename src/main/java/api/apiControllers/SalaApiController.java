@@ -11,7 +11,6 @@ public class SalaApiController {
 
     public static final String SALAS = "/salas";
     public static final String ID_ID = "/{id}";
-    public static final String SEARCH = "/search";
 
     private SalaBusinessController salaBusinessController = new SalaBusinessController();
 
