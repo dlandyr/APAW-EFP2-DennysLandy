@@ -86,4 +86,11 @@ public class SalaIT {
         List<SalaListaDto> salaLista = (List<SalaListaDto>) new Client().submit(request).getBody();
         assertTrue(salaLista.size()>=1);
     }
+
+    @Test
+    void testEliminar() {
+        String id = this.crear();
+        HttpRequest request = HttpRequest.builder(SalaApiController.SALAS).path(SalaApiController.ID_ID).expandPath(id).delete();
+        new Client().submit(request);
+    }
 }
